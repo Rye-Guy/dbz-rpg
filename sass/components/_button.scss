@@ -1,0 +1,78 @@
+.btn {
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s;
+        position: relative;
+        font-size: $regular-font-size;
+        top: 75%;
+        left: 40%;
+    }
+    &:hover {
+        transform: translateY(-.4rem);
+        box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, .2);
+        &::after{
+                transform: scaleX(1.4) scaleY(1.4);
+                opacity: 0;
+        }
+    }
+    &:active {
+        transform: translateY(-.1rem);
+        box-shadow: 0 1.5rem 1rem rgba(0, 0, 0, .4);
+    }
+    &--white {
+        background-color: #FFF;
+        color: black !important;
+        &::after {
+            background-color: white;
+        }
+    }
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+   
+    &--animated {
+        animation: moveBtn 2s ease .75s;
+        /* animation fill mode fixes the problem by running the intinal state of the button backwards*/
+        animation-fill-mode: backwards;
+    }
+}
+
+
+.btn-text{
+    &:link,
+    &:visited{
+        font-size: $regular-font-size;
+        color: white;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid white;
+        padding: 3px;
+        transition: all .2s;
+    }
+
+    &:hover{
+        background-color: white;
+        color: white;
+        box-shadow: 0 1rem 2rem rgba(black, .2);
+        transform: translateY(-2px);
+    }
+
+    &:active{
+        box-shadow: 0 .5rem 1rem rgba(black, .2);
+        transform: translateY(0px);
+    }
+}

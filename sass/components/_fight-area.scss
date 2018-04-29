@@ -1,0 +1,38 @@
+.fight-area{
+    display: flex;
+    align-items: center;
+}
+
+#selected-character-section{
+    padding-right: 10rem;
+}
+
+.character-section{
+    padding-left: 10rem;
+}
+
+#fight-content{
+    display: flex;
+    justify-content: center;
+    margin: 3rem;
+}
+
+#attack-button{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 200px;
+    transition: ease all .4s;
+    background-color: red;
+    border-color: red;
+
+}
+
+#attack-button:hover{
+    transform: scale(1.1);
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+    background-color: firebrick;
+    border-color: black;
+    color: white;
+}

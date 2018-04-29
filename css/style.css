@@ -1,0 +1,104 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  box-sizing: border-box;
+  background-image: url(../images/background-img.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Fjalla One', sans-serif; }
+
+.row {
+  margin: 0 auto; }
+
+.character-name {
+  font-size: 2.8rem; }
+
+.row {
+  max-width: 120rem;
+  display: flex;
+  justify-content: center; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem;
+    margin-top: 8rem; }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 5rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 5rem ) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 5rem) / 3); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 5rem) / 4); }
+
+.character-img {
+  width: 200px; }
+
+.fight-area {
+  display: flex;
+  align-items: center; }
+
+#selected-character-section {
+  padding-right: 10rem; }
+
+.character-section {
+  padding-left: 10rem; }
+
+#fight-content {
+  display: flex;
+  justify-content: center;
+  margin: 3rem; }
+
+#attack-button {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 200px;
+  transition: ease all .4s;
+  background-color: red;
+  border-color: red; }
+
+#attack-button:hover {
+  transform: scale(1.1);
+  -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+  background-color: firebrick;
+  border-color: black;
+  color: white; }
+
+.character {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+#selected-character {
+  background-color: lime;
+  border: black;
+  border-style: solid;
+  border-width: 1rem; }
+
+#defender {
+  background-color: red;
+  border: black;
+  border-style: solid;
+  border-width: 1rem; }
+
+.enemy {
+  background-color: blue;
+  border: black;
+  border-style: solid;
+  border-width: 1rem; }

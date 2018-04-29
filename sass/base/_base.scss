@@ -1,0 +1,25 @@
+*,
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    box-sizing: border-box;
+    background-image: url(../images/background-img.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.row{
+    margin: 0 auto; 
+}

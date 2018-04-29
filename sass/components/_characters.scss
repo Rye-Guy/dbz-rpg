@@ -1,0 +1,21 @@
+.character{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#selected-character{
+    background-color: lime;
+    @include cardBorder;
+}
+
+#defender{
+    background-color: red;
+    @include cardBorder;
+}
+
+.enemy{
+    background-color: blue;
+    @include cardBorder;
+}

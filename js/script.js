@@ -1,62 +1,60 @@
 //jquery fun!!!
 $(document).ready(function(){
         
-//an object that contains all the charcters
-    var charcters = {
+//an object that contains all the characters
+    var characters = {
         'goku': {
             name: 'goku',
             health: 150,
             attack: 12,
             counterAtt: 20, 
-            image: "images/"
+            image: "images/goku.png"
         },
         'krillin':{
             name: 'krillin',
             health: 200,
             attack: 8,
             counterAtt: 15, 
-            image: "images/"
+            image: "images/krillin.png"
         },
         'vegeta':{
             name: 'vegeta',
             health: 170,
             attack: 16,
             counterAtt: 15, 
-            image: "images/"
+            image: "images/vegeta.png"
         },
         'frieza':{
             name: 'frieza',
             health: 220,
             attack: 14,
             counterAtt: 20, 
-            image: "images/"
+            image: "images/frieza.png"
         }
     }
 
 //lets makes some globals.
-var selectedCharcter; 
+var selectedCharacter; 
 var defender; 
 var enemies = [];
-var indexOfCharcter;
-var attackPhase;
 var turns = 1;
 var enemiesDefeated = 0; 
 
-//function that creates the initial content with the charcters adding in images and names dynamicly
+//function that creates the initial content with the characters adding in images and names dynamicly
 
-var createContent = function(charcter, contentArea, charName){
-    var charArea = $("<div class='charcter' data-name='" + charcter.name + "'>");
-    var charName =  $("<div class='charcter-name'>").text(charcter.name);
-    var charImg = $("<img alt='image' class='charcter-img'>").attr("src", charcter.image);
-    var charHealth = $("<div class='charcter-health'>").text(charcter.health);
+var createContent = function(character, contentArea, makeChar){
+    var charArea = $("<div class='character' data-name='" + character.name + "'>");
+    var charName =  $("<div class='character-name'>").text(character.name);
+    var charImg = $("<img alt='image' class='character-img'>").attr("src", character.image);
+    var charHealth = $("<div class='character-health'>").text(character.health);
     charArea.append(charName).append(charImg).append(charHealth);
     $(contentArea).append(charArea);
 
-    if(charName == 'enemy'){
+    if(makeChar == 'enemy'){
         $(charArea).addClass('enemy');
-    }else if (charName == 'defender'){
-        defender = charcter;
-        $(charDiv).addClass('target');
+    }else if (makeChar == 'defender'){
+        defender = character;
+        $(charArea).addClass('target');
     }
 };
 //function that creates the messages area for the user.
@@ -64,16 +62,15 @@ var createContent = function(charcter, contentArea, charName){
         var messageDefault = $("#messageArea");
         var newMessage = $("<div>").text(message);
         messageDefault.append(newMessage);
-
 //if statement that helps control when the text area needs to be cleared
         if(message == 'clearMessage'){
             messageDefault.text('');
         }
     };
 
-    var createCharcters = function(charObj, makeContent){
+    var createCharacters = function(charObj, makeContent){
             //all the characters on the page
-            if(makeContent == '#charcters-section'){
+            if(makeContent == '#characters-section'){
                 $(makeContent).empty();
             for(var key in charObj){
                 if (charObj.hasOwnProperty(key)){
@@ -83,7 +80,7 @@ var createContent = function(charcter, contentArea, charName){
             }
             //player selected character 
         if(makeContent == '#selected-character'){
-            $('#selected-charcter').prepend("Your Character");
+            $('#selected-character').prepend("Your Character");
             createContent(charObj, makeContent, '');
             $('#attack-button').css('visibility', 'visable');
         }
@@ -101,7 +98,7 @@ var createContent = function(charcter, contentArea, charName){
                 name = ($(this).data('name'));
             // functioniality for when there is no defender in the area
                 if ($('#defender').children().length == 0){
-                    createCharcters(name, '#defender');
+                    createCharacters(name, '#defender');
                     $(this).hide();
                     createMessage("clearMessage");
                 }
@@ -127,8 +124,8 @@ var createContent = function(charcter, contentArea, charName){
             }
 
         if (makeContent == 'enemyDamage'){
-            $('#selected-charcter').empty();
-            createContent(charObj, '#selected-charcter', '');
+            $('#selected-character').empty();
+            createContent(charObj, '#selected-character', '');
             }
         if (makeContent == 'enemyDefeated'){
             $('#defender').empty();
@@ -136,21 +133,21 @@ var createContent = function(charcter, contentArea, charName){
             createMessage(playerDefeatMessage);
         }
     };
-//allows user to select a charcter
-    createCharcters(charcters, '#characters-section');
+//allows user to select a character
+    createCharacters(characters, '#characters-section');
     $(document).on('click', '.character', function(){
         name = $(this).data('name');
         //if we dont have one selected yet
-        if(!selectedCharcter){
-            selectedCharcter = charcters[name];
-            for (var key in charcters){
+        if(!selectedCharacter){
+            selectedCharacter = characters[name];
+            for (var key in characters){
                 if(key != name){
-                    enemies.push(charcters[key]);
+                    enemies.push(characters[key]);
                 }
             }
         $('#characters-section').hide();
-        createCharcters(selectedCharcter, '#selected-charcter');
-        createCharcters(enemies, '#available-to-attack-section');    
+        createCharacters(selectedCharacter, '#selected-character');
+        createCharacters(enemies, '#available-to-attack-section');    
         }
     });
 
@@ -158,32 +155,32 @@ var createContent = function(charcter, contentArea, charName){
     $('#attack-button').on("click", function(){
         if($('#defender').children().length !== 0){
     //attack phase control
-            var attackMessage = "You attacked" + defender.name + "for" + (selectedCharcter.attack * turns) + " damage.";
+            var attackMessage = "You attacked" + defender.name + "for" + (selectedCharacter.attack * turns) + " damage.";
             createMessage("clearMessage");
-            defender.health = defender.health - (selectedCharcter.attack * turns);
+            defender.health = defender.health - (selectedCharacter.attack * turns);
         
         if(defender.health > 0){
-            createCharcters(defender, 'playerDamage');
+            createCharacters(defender, 'playerDamage');
             var counterAttMessage = defender.name + " attack you for " + defender.counterAtt + " damage";
             createMessage(attackMessage);
             createMessage(counterAttMessage);
         
-        selectedCharcter.health = selectedCharcter.health - defender.counterAtt;
-        createCharcters(selectedCharcter, 'enemyDamage');
-        if(selectedCharcter.health <= 0){
+        selectedCharacter.health = selectedCharacter.health - defender.counterAtt;
+        createCharacters(selectedCharacter, 'enemyDamage');
+        if(selectedCharacter.health <= 0){
             createMessage('clearMessage');
             restartGame("You have a been defeat by " + defender.name);
             $("#attack-button").unbind("click")
              }
         }else{
-            createCharcters(defender, 'enemyDefeated');
-            killCount++;
-            if (killCount >= 3){
+            createCharacters(defender, 'enemyDefeated');
+            enemiesDefeated++;
+            if (enemiesDefeated >= 3){
                 createMessage("clearMessage");
                 restartGame("You have proven your the stronges in the UNIVERSE! YOU WIN!!!");
             }
         }
-        turnCounter++;
+        turns++;
         }else{
             createMessage("clearMessage");
             createMessage("No one to fight...yet")
@@ -199,4 +196,4 @@ var createContent = function(charcter, contentArea, charName){
         $("gameMessage").append(restart);
     };
 });
-//start with an array of our charcters
+//start with an array of our characters
