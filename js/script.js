@@ -40,9 +40,10 @@ var enemies = [];
 var turns = 1;
 var enemiesDefeated = 0; 
 
-//function that creates the initial content with the characters adding in images and names dynamicly
+//function that creates the initial content with the characters adding in images and names dynamicly. Displays conent all togehter before user has made any selections. 
 
 var createContent = function(character, contentArea, makeChar){
+
     var charArea = $("<div class='character' data-name='" + character.name + "'>");
     var charName =  $("<div class='character-name'>").text(character.name);
     var charImg = $("<img alt='image' class='character-img'>").attr("src", character.image);
@@ -50,6 +51,8 @@ var createContent = function(character, contentArea, makeChar){
     charArea.append(charName).append(charImg).append(charHealth);
     $(contentArea).append(charArea);
 
+
+//makes classes for other selections from the user.
     if(makeChar == 'enemy'){
         $(charArea).addClass('enemy');
     }else if (makeChar == 'defender'){
@@ -57,21 +60,13 @@ var createContent = function(character, contentArea, makeChar){
         $(charArea).addClass('target');
     }
 };
-//function that creates the messages area for the user.
-    var createMessage = function(message){
-        var messageDefault = $("#messageArea");
-        var newMessage = $("<div>").text(message);
-        messageDefault.append(newMessage);
-//if statement that helps control when the text area needs to be cleared
-        if(message == 'clearMessage'){
-            messageDefault.text('');
-        }
-    };
-
+//function that is used to keep content updated as the game is played. this is called back alot to ensure that after every turn we update the content on the page. 
     var createCharacters = function(charObj, makeContent){
             //all the characters on the page
             if(makeContent == '#characters-section'){
                 $(makeContent).empty();
+
+            //for in loop to loop through the current character object and creatset up
             for(var key in charObj){
                 if (charObj.hasOwnProperty(key)){
                     createContent(charObj[key], makeContent, '')
@@ -100,7 +95,7 @@ var createContent = function(character, contentArea, makeChar){
                 if ($('#defender').children().length == 0){
                     createCharacters(name, '#defender');
                     $(this).hide();
-                    createMessage("clearMessage");
+             
                 }
             });
         }
@@ -111,7 +106,7 @@ var createContent = function(character, contentArea, makeChar){
         for (var i = 0; i < enemies.length; i++){
             //add combant to the defender area
             if(enemies[i].name == charObj){
-                $('#defender').append("Your selected oppoenent")
+                $('#defender').append("Your Selected Oppoenent")
                 createContent(enemies[i], makeContent, 'defender');
                 }
             }
@@ -119,7 +114,7 @@ var createContent = function(character, contentArea, makeChar){
         //upadte page when defender is attacked
         if (makeContent == 'playerDamage'){
             $('#defender').empty();
-            $('#defender').append("Your Selected Oppenent")
+            $('#defender').append("Counter Attack: " + defender.counterAtt);
             createContent(charObj, '#defender', 'defender');
             }
 
@@ -129,17 +124,18 @@ var createContent = function(character, contentArea, makeChar){
             }
         if (makeContent == 'enemyDefeated'){
             $('#defender').empty();
-            var playerDefeatMessage = "You have eliminated " + charObj.name + ". Others seem to have an eye on you, so look out!";
-            createMessage(playerDefeatMessage);
+            
+       
         }
     };
-//allows user to select a character
+//creates a selected-character and moves the rest of the characters into the enemies array
     createCharacters(characters, '#characters-section');
     $(document).on('click', '.character', function(){
         name = $(this).data('name');
-        //if we dont have one selected yet
+    
         if(!selectedCharacter){
             selectedCharacter = characters[name];
+        //for in loop that checks 
             for (var key in characters){
                 if(key != name){
                     enemies.push(characters[key]);
@@ -151,49 +147,55 @@ var createContent = function(character, contentArea, makeChar){
         }
     });
 
-    //section for contorlling what happens when the user starts playing the game
+    //section for contorlling what happens when the user starts playing the game. Every click of the attack button runs to check the conditions of the current state of the game. 
     $('#attack-button').on("click", function(){
         if($('#defender').children().length !== 0){
-    //attack phase control
-            var attackMessage = "You attacked" + defender.name + "for" + (selectedCharacter.attack * turns) + " damage.";
-            createMessage("clearMessage");
+            //damage calculation
             defender.health = defender.health - (selectedCharacter.attack * turns);
-        
+    
+            $.alert({
+                title: 'Fight!',
+                theme: 'dark', 
+                content: selectedCharacter.name + " has hit " + defender.name + " for " + (selectedCharacter.attack * turns) + " damage<br>" +  defender.name + " counters for " + defender.counterAtt ,
+            });
+            
+           
+    //the end game conditions
         if(defender.health > 0){
-            createCharacters(defender, 'playerDamage');
-            var counterAttMessage = defender.name + " attack you for " + defender.counterAtt + " damage";
-            createMessage(attackMessage);
-            createMessage(counterAttMessage);
-        
-        selectedCharacter.health = selectedCharacter.health - defender.counterAtt;
+        createCharacters(defender, 'playerDamage');  
         createCharacters(selectedCharacter, 'enemyDamage');
+        selectedCharacter.health = selectedCharacter.health - defender.counterAtt;
+        
         if(selectedCharacter.health <= 0){
-            createMessage('clearMessage');
-            restartGame("You have a been defeat by " + defender.name);
-            $("#attack-button").unbind("click")
-             }
+            $("#attack-button").unbind("click");
+            $.alert({
+                title: 'Defeat!',
+                theme: 'dark', 
+                content: defender.name + " has bested you. You should have spent more time in the gravity chamber.",
+            });
+            
+        }
+       
         }else{
             createCharacters(defender, 'enemyDefeated');
             enemiesDefeated++;
             if (enemiesDefeated >= 3){
-                createMessage("clearMessage");
-                restartGame("You have proven your the stronges in the UNIVERSE! YOU WIN!!!");
+                $.alert({
+                    title: 'Victory!',
+                    theme: 'dark', 
+                    content: selectedCharacter.name + " has defeated all opponents. You are the universes strongest figter",
+                });
             }
         }
+//no matter the outcome after damage calculation increase the turn counter. Important for allowing the player to hit for attack points as the game progesses. 
         turns++;
+//condition just incase the user attacks nothing. 
         }else{
-            createMessage("clearMessage");
-            createMessage("No one to fight...yet")
+            $.alert({
+                title: 'Embarrassing!',
+                theme: 'dark', 
+                content: selectedCharacter.name + " has attacked the air, dealing no hit points to anyone. Hit points only taken to " + selectedCharacter.name + "'s ego" ,
+            });
         }
     });
-
-    var restartGame = function(input){
-        var restart = $('<button>Restart</button>').click(function(){
-            location.reload();
-        });
-        var gameState = $("<div>").text(input);
-        $("gameMessage").append(gameState);
-        $("gameMessage").append(restart);
-    };
 });
-//start with an array of our characters

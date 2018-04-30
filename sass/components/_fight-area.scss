@@ -36,3 +36,10 @@
     border-color: black;
     color: white;
 }
+
+#attack-button:active{
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+    transform: scale(1.03);
+}

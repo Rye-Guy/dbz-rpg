@@ -6,12 +6,15 @@
   <title>Dragonball RPG!</title>
   <!-- Latest compiled and minified CSS -->
 
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+  <link rel="stylesheet" href="css/jquery-confirm.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+ 
 </head>
 
 <body>
+  
   <header>
   </header>
   <div id="main-game-section">
@@ -24,6 +27,10 @@
         <div id="selected-character"></div>
         </div>
         <button class="btn" id="attack-button">Attack</button>
+        <audio id="defeat" preload="auto" src="assets/sounds/defeat.wav"></audio>
+        <audio id="punch" preload="auto" src="assets/sounds/mediumpunch.wav"></audio>
+        <audio id="miss" preload="auto" src="assets/sounds/meleemiss.wav"></audio>
+        <audio id="victory" preload="auto" src="assets/sounds/victory.wav"></audio>
         <div id="action">
         <div class="character-section">
             <div>
@@ -49,6 +56,7 @@
   </div>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script type="text/javascript" src="js/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
 </body>
 
