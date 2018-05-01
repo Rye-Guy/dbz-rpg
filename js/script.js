@@ -1,12 +1,15 @@
 //jquery fun!!!
 $(document).ready(function () {
 
-    var deafeatSound = new Audio('assets/sounds/defeat.wav');
-    var punchSound = new Audio('assets/sounds/mediumpunch.wav');
-    var missSound = new Audio('assets/sounds/meleemiss.wav');
-    var victorySound = new Audio('assets/sounds/victory.wav');
+    var themeSong = new Audio('assets/sounds/themeSong.mp3');
+    var battleTheme = new Audio('assets/sounds/battleTheme.mp3');
+    var startTheme = new Audio('assets/sounds/startTheme.mp3');
+    var victorySound = new Audio('assets/sounds/victory.mp3');
+    var missedPunch = new Audio('assets/sounds/meleemiss.mp3');
+    var hitPunch = new Audio('assets/sounds/mediumpunch.mp3');
 
-
+    startTheme.play();
+    
     //an object that contains all the characters
     var characters = {
         'goku': {
@@ -66,13 +69,13 @@ $(document).ready(function () {
             $(charArea).addClass('target');
         }
     };
-    //function that is used to keep content updated as the game is played. this is called back alot to ensure that after every turn we update the content on the page. 
+    //function that is used to keep content updated as the game is played. this is called back alot to ensure that after every turn we update the content on the page.
     var createCharacters = function (charObj, makeContent) {
         //all the characters on the page
         if (makeContent == '#characters-section') {
             $(makeContent).empty();
 
-            //for in loop to loop through the current character object and creatset up
+            //for in loop to loop through the current character object and push other characters to the eneimes section.
             for (var key in charObj) {
                 if (charObj.hasOwnProperty(key)) {
                     createContent(charObj[key], makeContent, '')
@@ -133,6 +136,8 @@ $(document).ready(function () {
     //creates a selected-character and moves the rest of the characters into the enemies array
     createCharacters(characters, '#characters-section');
     $(document).on('click', '.character', function () {
+        startTheme.pause();
+        battleTheme.play();
         $('.fight-area').css('display', 'flex');
         $('.main-heading').text('Select Your Opponent!');
         name = $(this).data('name');
@@ -159,7 +164,7 @@ $(document).ready(function () {
             $('.player-name').text(selectedCharacter.name);
             //damage calculation
             defender.health = defender.health - (selectedCharacter.attack * turns);
-            
+            hitPunch.play();
             $.alert({
                 title: 'Fight!',
                 theme: 'dark',
@@ -167,25 +172,25 @@ $(document).ready(function () {
             });
             //the end game conditions
             if (defender.health > 0) {
+                //updates information to the page so user can see how much damage is left
                 createCharacters(defender, 'playerDamage');
                 createCharacters(selectedCharacter, 'enemyDamage');
                 selectedCharacter.health = selectedCharacter.health - defender.counterAtt;
 
                 if (selectedCharacter.health <= 0) {
+                    battleTheme.pause();
+                  
                     $('.overlay-lose').css('display', 'block');
                     $("#attack-button").unbind("click");
-                    $.alert({
-                        title: 'Defeat!',
-                        theme: 'dark',
-                        content: defender.name + " has bested you. You should have spent more time in the gravity chamber.",
-                    });
-
                 }
 
             } else {
                 createCharacters(defender, 'enemyDefeated');
                 enemiesDefeated++;
                 if (enemiesDefeated >= 3) {
+                    battleTheme.pause();
+                    victorySound.play();
+                    themeSong.play();
                     $('.overlay').css('display', 'block');
                     $('.player-health').text(selectedCharacter.health);
                 }
@@ -194,6 +199,7 @@ $(document).ready(function () {
             turns++;
             //condition just incase the user attacks nothing. 
         } else {
+            missedPunch.play();
             $.alert({
                 title: 'Embarrassing!',
                 theme: 'dark',
