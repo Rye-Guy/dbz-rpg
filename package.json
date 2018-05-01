@@ -1,0 +1,22 @@
+{
+  "name": "ls",
+  "version": "1.0.0",
+  "description": "\"dbz rpg\"",
+  "main": "index.js",
+  "scripts": {
+    "complie:sass": "node-sass sass/main.scss css/style.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rye-Guy/dbz-rpg.git"
+  },
+  "author": "Ryan Racioppo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rye-Guy/dbz-rpg/issues"
+  },
+  "homepage": "https://github.com/Rye-Guy/dbz-rpg#readme",
+  "dependencies": {
+    "node-sass": "^4.9.0"
+  }
+}

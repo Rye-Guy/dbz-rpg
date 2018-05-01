@@ -1,0 +1,43 @@
+
+.overlay{
+ position: fixed; 
+ display: none; /* Hidden by default */
+ width: 100%; 
+ height: 100%;
+ top: 0; 
+ left: 0;
+ right: 0;
+ bottom: 0;
+ background:  radial-gradient(#F85B1A, #072083);
+ z-index: 2;
+
+}
+
+.victoryHeading{
+    text-align: center;
+    font-weight: bold;
+    
+    &--primary{
+        margin-top: 15%;
+        font-size: $big-font-size;
+    }
+
+    &--secondary{
+        font-size: $regular-font-size;
+    }
+}
+
+
+.overlay-lose{
+    position: fixed; 
+    display: none; /* Hidden by default */
+    width: 100%; 
+    height: 100%;
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:  radial-gradient(#F85B1A, #072083);
+    z-index: 2;
+   
+   }
