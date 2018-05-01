@@ -156,6 +156,7 @@ $(document).ready(function () {
     
         if ($('#defender').children().length !== 0) {
             $('.main-heading').text('Battle!');
+            $('.player-name').text(selectedCharacter.name);
             //damage calculation
             defender.health = defender.health - (selectedCharacter.attack * turns);
             

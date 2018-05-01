@@ -41,3 +41,28 @@
     z-index: 2;
    
    }
+
+
+.dragon-balls--image{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 40px;
+    animation: pulsate 2s ease infinite forwards;
+
+}
+
+@keyframes pulsate{
+    0%{ 
+        transform: scale(1.0);
+    }
+
+    50%{
+        transform: scale(1.15);
+    }
+
+    100%{
+        transform: scale(1.0);
+    }
+}
