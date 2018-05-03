@@ -79,24 +79,21 @@ body {
   background-color: #072083;
   border-color: #072083;
   color: white; }
-
-#attack-button:hover {
-  transform: scale(1.1);
-  -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
-  background-color: #F85B1A;
-  border-color: #F85B1A;
-  color: black; }
-
-#attack-button:active {
-  -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.7);
-  -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.7);
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.7);
-  transform: scale(1.03); }
-
-#attack-button:focus {
-  outline: none; }
+  #attack-button:hover {
+    transform: scale(1.1);
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+    background-color: #F85B1A;
+    border-color: #F85B1A;
+    color: black; }
+  #attack-button:active {
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.7);
+    transform: scale(1.03); }
+  #attack-button:focus {
+    outline: none; }
 
 .character {
   display: flex;
@@ -172,3 +169,27 @@ body {
     transform: scale(1.15); }
   100% {
     transform: scale(1); } }
+
+.restart-btn {
+  display: block;
+  margin: auto;
+  height: 45px;
+  width: 150px;
+  margin-top: 50px;
+  border-radius: 25px;
+  background-color: #072083;
+  border: 2px black;
+  transition: ease all .5s; }
+  .restart-btn:hover {
+    transform: scale(1.07);
+    background-color: #3e63f5;
+    -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.5); }
+  .restart-btn:active {
+    transform: scale(1.03);
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.5); }
+  .restart-btn:focus {
+    outline: none; }

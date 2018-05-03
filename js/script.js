@@ -61,7 +61,7 @@ $(document).ready(function () {
         $(contentArea).append(charArea);
 
 
-        //makes classes for other selections from the user.
+        //makes classes for other selections from the user. When we call the function we want these to do their thang. 
         if (makeChar == 'enemy') {
             $(charArea).addClass('enemy');
         } else if (makeChar == 'defender') {
@@ -144,7 +144,7 @@ $(document).ready(function () {
 
         if (!selectedCharacter) {
             selectedCharacter = characters[name];
-            //for in loop that checks 
+            //for in loop that checks to see who is and who isnts 
             for (var key in characters) {
                 if (key != name) {
                     enemies.push(characters[key]);

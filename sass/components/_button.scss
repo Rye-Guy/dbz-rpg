@@ -1,0 +1,30 @@
+.restart-btn{ 
+    display: block;
+    margin: auto;
+    height: 45px;
+    width: 150px;
+    margin-top: 50px;
+    border-radius: 25px;
+    background-color:  #072083;
+    border: 2px black;
+    transition: ease all .5s; 
+
+        &:hover{
+            transform: scale(1.07);
+            background-color: lighten(#072083, 33%);
+            -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+            -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+            box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+        }
+
+        &:active{
+            transform: scale(1.03);
+            -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.5);
+            -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.5);
+            box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.5);
+        }
+        &:focus{
+            outline: none;
+        }
+}
+

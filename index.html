@@ -14,17 +14,19 @@
   <audio src="assets/sounds/victory.wav" type="audio/wav" id="victorySound"></audio>
   <div class="overlay">
     <h1 class="victoryHeading victoryHeading--primary">You Win!</h1>
-
     <h2 class="victoryHeading victoryHeading--secondary"><span class="player-name"></span> survived with
       <span class="player-health"></span> HP</h2>
+      <button class="restart-btn" value="Restart" onClick="window.location.reload()">Reload</button>
       <img src="images/dragon-balls.png" alt="dragon-balls" class="dragon-balls--image">
   </div>
   <div class="overlay-lose">
+
       <h1 class="victoryHeading victoryHeading--primary">You Lose!</h1>
   
       <h2 class="victoryHeading victoryHeading--secondary"><span class="player-name"></span> should spend more time in the gravity chamber</h2>
+      <button class="restart-btn" value="Restart" onClick="window.location.reload()">Reload</button>
       <img src="images/dragon-balls.png" alt="dragon-balls" class="dragon-balls--image">
-    </div>
+  </div>
   <div id="main-game-section">
     <h1 class="main-heading">Select Your Character</h1>
     <div class="row" id="characters-section">

@@ -25,25 +25,29 @@
     background-color: #072083;
     border-color: #072083;
     color: white;
+
+        &:hover{
+            transform: scale(1.1);
+            -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+            -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+            box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
+            background-color: #F85B1A;
+            border-color: #F85B1A;
+            color: black;
+        }
+        
+        &:active{
+            -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+            -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+            box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
+            transform: scale(1.03);
+        }
+
+        &:focus{
+            outline: none;
+        }
 }
 
-#attack-button:hover{
-    transform: scale(1.1);
-    -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.5);
-    background-color: #F85B1A;
-    border-color: #F85B1A;
-    color: black;
-}
 
-#attack-button:active{
-    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
-    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
-    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.7);
-    transform: scale(1.03);
-}
 
-#attack-button:focus{
-    outline: none;
-}
+
