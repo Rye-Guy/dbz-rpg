@@ -7,6 +7,7 @@ $(document).ready(function () {
     var victorySound = new Audio('assets/sounds/victory.mp3');
     var missedPunch = new Audio('assets/sounds/meleemiss.mp3');
     var hitPunch = new Audio('assets/sounds/mediumpunch.mp3');
+    var over9000 = new Audio('assets/sounds/over9000.mp3');
 
     startTheme.play();
     
@@ -14,29 +15,29 @@ $(document).ready(function () {
     var characters = {
         'goku': {
             name: 'goku',
-            health: 200,
-            attack: 8,
-            counterAtt: 25,
+            health: 220,
+            attack: 12,
+            counterAtt: 28,
             image: "images/goku.png"
         },
         'krillin': {
             name: 'krillin',
-            health: 160,
-            attack: 6,
-            counterAtt: 14,
+            health: 260,
+            attack: 8,
+            counterAtt: 22,
             image: "images/krillin.png"
         },
         'vegeta': {
             name: 'vegeta',
             health: 200,
-            attack: 12,
-            counterAtt: 20,
+            attack: 16,
+            counterAtt: 30,
             image: "images/vegeta.png"
         },
         'frieza': {
             name: 'frieza',
             health: 180,
-            attack: 15,
+            attack: 18,
             counterAtt: 45,
             image: "images/frieza.png"
         }
@@ -189,7 +190,7 @@ $(document).ready(function () {
                 enemiesDefeated++;
                 if (enemiesDefeated >= 3) {
                     battleTheme.pause();
-                    victorySound.play();
+                    over9000.play();
                     themeSong.play();
                     $('.overlay').css('display', 'block');
                     $('.player-health').text(selectedCharacter.health);
