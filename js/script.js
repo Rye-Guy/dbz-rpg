@@ -50,7 +50,7 @@ $(document).ready(function () {
     var turns = 1;
     var enemiesDefeated = 0;
 
-    //function that creates the initial content with the characters adding in images and names dynamicly. Displays conent all togehter before user has made any selections. 
+    //function that creates the initial content with the characters adding in images and names dynamicly. Displays conent all togehter before user has made any selections. Called to create the user selected character/defender 
 
     var createContent = function (character, contentArea, makeChar) {
 
